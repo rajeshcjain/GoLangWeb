@@ -5,6 +5,7 @@ import (
 	"os"
 	"io"
 	"strings"
+	"io/ioutil"
 )
 
 func main(){
