@@ -45,13 +45,19 @@ func simulateRedis(conn net.Conn,str []string) {
 
 	fmt.Println("In simulateRedis",str)
 
+
+
 	switch str[0] {
 	case "Get":
+		fmt.Printf("%s %s",str[0],str[1])
 		fmt.Fprintf(conn,myMap[str[1]])
 	case "Set":
+		fmt.Printf("%s %s %s",str[0],str[1],str[2])
 		if len(str) != 3{
 			fmt.Fprintf(conn,"There is a problem with input")
+
 		}
+
 		myMap[str[1]] = str[2]
 	case "Del":
 		delete(myMap,str[1])
