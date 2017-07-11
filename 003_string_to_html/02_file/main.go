@@ -5,7 +5,6 @@ import (
 	"os"
 	"io"
 	"strings"
-	"io/ioutil"
 )
 
 func main(){
@@ -33,7 +32,7 @@ func main(){
 	//2nd value is error.
 	fDescriptor, _ := os.Create("index.html")
 
-	//Defering it till the main function termination...till then we can use
+	//Deferring it till the main function termination...till then we can use
 	//fDescriptor easily.
 	defer fDescriptor.Close()
 
@@ -41,5 +40,4 @@ func main(){
 	//os and below package for io and strings.Need to learn more these
 	//packages
 	io.Copy(fDescriptor,strings.NewReader(str))
-
 }

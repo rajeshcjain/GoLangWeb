@@ -11,6 +11,13 @@ type hotdog int
 
 func (m hotdog) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("I am in ServeHTTP")
+
+	/*
+	ParseForm is the method which needs to be call before we can use
+	req.Form  - This for getting the data in the body
+	req.PostForm - this is for getting the data from body and header
+	*/
+
 	err := req.ParseForm()
 	if err != nil {
 		log.Fatalln(err)

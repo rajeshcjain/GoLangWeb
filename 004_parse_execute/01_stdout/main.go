@@ -23,7 +23,7 @@ func main(){
 
 	//Here we are learning of template package...we are getting the parseFiles...
 	//It parses the input file and and gives the Template.
-       tpl,err := template.ParseFiles("go.html","go1.html")
+       tpl,err := template.ParseFiles("go1.html","go.html")
 
 	if err != nil {
 		// This is important...Here we are learning new thing.It is equivalent to

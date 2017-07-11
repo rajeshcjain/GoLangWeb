@@ -8,7 +8,8 @@ import (
 
 func main(){
 
-	/*Here we are parsing the file and putting it in to template and it returns the
+	/*
+	  Here we are parsing the file and putting it in to template and it returns the
 	  template pointer.Now when we call tpl.Execute() then this will call the first
 	  template which is available in tpl pointer as we know we can think of tpl as
 	  the pointer to space where template are kept.
@@ -29,6 +30,10 @@ func main(){
          which is a function which is being called on the pointer which is returned from
          the pointer where we keep the templates.
 
+         Remember,It is not being called from the template....if called will create
+         a new template and if we use it with tpl which is a pointer returned then
+         it will add it to the existing template.
+
 	*/
 	tpl,err = tpl.ParseFiles("two.gmao","three.gmao")
 	if err != nil {
@@ -36,7 +41,8 @@ func main(){
 	}
 
 	/*
-	  If we have more then onw template then we can call it through
+	  If we have more then one
+	   template then we can call it through
 	  func (t *Template) ExecuteTemplate(wr io.Writer, name string, data interface{})
 	  where we specify the template we want to print on the output.
 	*/
@@ -65,5 +71,4 @@ func main(){
 	if err != nil {
 		log.Fatalln(err)
 	}
-
 }
