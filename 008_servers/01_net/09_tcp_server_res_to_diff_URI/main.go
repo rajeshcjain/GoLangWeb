@@ -11,8 +11,6 @@ import (
 //var wg sync.WaitGroup
 
 func main(){
-
-
 	li,err := net.Listen("tcp",":7777")
 
 	if err != nil{

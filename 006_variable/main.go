@@ -11,12 +11,10 @@ var tpl *template.Template
 /*
                         IMPORTANT
 
-   This is important,Here in "tpl.html"..we are representing the data
-   by wisdom variable.
+   This is important,Here in "tpl.html"..we are representing the data by wisdom variable.
 
 */
 func init(){
-
 	tpl = template.Must(template.ParseFiles("tpl.html"))
 }
 func main() {

@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-
 type hotdog int
 
 func (d hotdog) ServeHTTP(response http.ResponseWriter,r *http.Request){

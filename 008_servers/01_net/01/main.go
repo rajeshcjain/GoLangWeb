@@ -26,5 +26,4 @@ func main(){
 		fmt.Fprint(con,"How is your Day?")
 		con.Close()
 	}
-
 }

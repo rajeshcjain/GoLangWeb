@@ -10,7 +10,7 @@ func main(){
 	/*
 	The difference between Listen and Dial function is that
 	Dial can be used for establishing the connection with the
-	Listen(which means where we have created the server.)
+	server(which means where we have created the server.)
 	So when we Dial in to some server.It creates the connection
 	with that server and then operate
 	*/

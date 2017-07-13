@@ -14,6 +14,7 @@ func main(){
 	if err != nil{
 		panic(err)
 	}
+
 	defer li.Close()
 
 	for {
@@ -28,27 +29,27 @@ func main(){
 }
 
 func handle(conn net.Conn){
-
 	defer conn.Close()
 	request(conn)
 	response(conn)
 }
 
 func request(conn net.Conn){
-
 	scan := bufio.NewScanner(conn)
-
 	firstLine := 0
 
 	for scan.Scan(){
+
 		str := scan.Text()
 		fmt.Println(str)
+
 		if firstLine == 0{
 			firstStr := strings.Fields(str)[0]
 			secStr := strings.Fields(str)[1]
 			fmt.Printf("****Method %s\n",firstStr)
 			fmt.Printf("****URI %s\n",secStr)
 		}
+
 		if str == ""{
 			break
 		}
@@ -64,7 +65,6 @@ func response(conn net.Conn){
 	fmt.Fprint(conn, "Content-Type: text/html\r\n")
 	fmt.Fprint(conn, "\r\n")
 	fmt.Fprintf(conn,res)
-
 }
 
 
