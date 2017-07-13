@@ -22,16 +22,16 @@ func (m hotdog) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		req.Method,
 		req.Form,
 	}
-	tpl.ExecuteTemplate(w, "index.gohtml", data)
+	tpl.ExecuteTemplate(w, "index.html", data)
 }
 
 var tpl *template.Template
 
 func init() {
-	tpl = template.Must(template.ParseFiles("index.gohtml"))
+	tpl = template.Must(template.ParseFiles("index.html"))
 }
 
 func main() {
 	var d hotdog
-	http.ListenAndServe(":8080", d)
+	http.ListenAndServe(":7777", d)
 }
