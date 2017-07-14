@@ -4,6 +4,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"text/template"
 	"net/http"
+	"log"
+	"fmt"
 )
 
 
@@ -22,43 +24,53 @@ func main(){
 	mux.GET("/apply",apply)
 	mux.POST("/apply",applyProcess)
 	mux.GET("/user/:name",user)
-	mux.GET("/user/:category/:article",blogRead)
+	mux.GET("/blog/:category/:article",blogRead)
 	mux.POST("/blog/:category/:article", blogWrite)
 	http.ListenAndServe(":8080", mux)
 }
 
-func blogWrite(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func user(w http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	fmt.Fprintf(w, "USER, %s!\n", ps.ByName("name"))
 }
 
-func blogRead(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func blogRead(w http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	fmt.Fprintf(w, "READ CATEGORY, %s!\n", ps.ByName("category"))
+	fmt.Fprintf(w, "READ ARTICLE, %s!\n", ps.ByName("article"))
 }
 
-
-func user(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func blogWrite(w http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	fmt.Fprintf(w, "WRITE CATEGORY, %s!\n", ps.ByName("category"))
+	fmt.Fprintf(w, "WRITE ARTICLE, %s!\n", ps.ByName("article"))
 }
 
-
-func applyProcess(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func index(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
+	err := tpl.ExecuteTemplate(w, "index.html", nil)
+	HandleError(w, err)
 }
 
-
-func apply(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func about(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
+	err := tpl.ExecuteTemplate(w, "about.html", nil)
+	HandleError(w, err)
 }
 
-
-func contact(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func contact(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
+	err := tpl.ExecuteTemplate(w, "contact.html", nil)
+	HandleError(w, err)
 }
 
-func about(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
-
+func apply(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
+	err := tpl.ExecuteTemplate(w, "apply.html", nil)
+	HandleError(w, err)
 }
 
-func index(w http.ResponseWriter,req *http.Request,ps httprouter.Params){
+func applyProcess(w http.ResponseWriter, req *http.Request, _ httprouter.Params) {
+	err := tpl.ExecuteTemplate(w, "applyProcess.html", nil)
+	HandleError(w, err)
+}
 
+func HandleError(w http.ResponseWriter, err error) {
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Fatalln(err)
+	}
 }
