@@ -14,10 +14,7 @@ func handleReq(w http.ResponseWriter, req *http.Request){
 	<!--not serving from our server-->
 	<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Golde33443.jpg">
 	`)
-
-
 }
-
 
 func main() {
 	http.HandleFunc("/img",handleReq)
