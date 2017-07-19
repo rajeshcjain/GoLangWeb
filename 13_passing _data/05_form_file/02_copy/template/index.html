@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<form method="POST" enctype="multipart/form-data" xmlns="http://www.w3.org/1999/html">
+    <label for="idx-f">Choose file to upload</label>
+    <input type="file" id="idx-f" name="q">
+        <br>
+    <input type="submit">
+</form>
+
+{{if .}}
+<h1> The content of the file is : </h1>
+{{.}}
+{{end}}
